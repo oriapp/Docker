@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+    serviceName:
+    image: imageName
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: dev
+    ports:
+      - 8080:8080
