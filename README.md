@@ -6,4 +6,6 @@ Discord Bots
 Redis Servers 
 Lavalink Servers
 
-Dockerfile(s) i need to save somewhere
+
+
+> I'll dump here things that can help you
