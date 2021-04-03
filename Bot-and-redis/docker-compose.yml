@@ -1,0 +1,20 @@
+version: '3.4'
+
+#Help-desk bot services
+services:
+  helpdesk:
+    image: helpdesk:1
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+  # Redis server
+  redis:
+    image: redis:4
+    container_name: cache
+    ports:
+      - '6379:6379'
+  
