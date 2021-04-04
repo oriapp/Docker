@@ -9,12 +9,14 @@ services:
       dockerfile: ./Dockerfile
     environment:
       NODE_ENV: production
-    ports:
-      - 3000:3000
+    # ports:
+    #   - 3000:3000
+    deploy:
+      mode: replicated
+      replicas: 2
   # Redis server
   redis:
     image: redis:4
     container_name: cache
     ports:
       - '6379:6379'
-  
