@@ -1,0 +1,33 @@
+version: '3.4'
+
+#Help-desk bot services
+services:
+  helpdesk:
+    image: helpdesk:1
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    # ports:
+    #   - 3000:3000
+    deploy:
+      mode: replicated
+      replicas: 2
+  # Redis server
+  redis:
+    image: redis:4
+    container_name: cache
+    ports:
+      - '6379:6379'
+  datadog:
+    links:
+     - redis # Connect the Datadog Agent container to the Redis container
+    image: gcr.io/datadoghq/agent:latest
+    environment:
+     - DD_API_KEY=DD_API_KEY # https://docs.datadoghq.com/account_management/api-app-keys/
+     - DD_SITE=datadoghq.com
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - /proc/:/host/proc/:ro
+     - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
