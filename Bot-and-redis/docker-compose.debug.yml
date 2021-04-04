@@ -2,12 +2,15 @@ version: '3.4'
 
 services:
   helpdesk:
-    image: helpdesk
+    image: helpdesk:1
     build:
       context: .
       dockerfile: ./Dockerfile
     environment:
       NODE_ENV: development
+    deploy:
+      mode: replicated
+      replicas: 2
     ports:
       - 3000:3000
       - 9229:9229
